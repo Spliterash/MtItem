@@ -5,6 +5,7 @@ include(
     "base",
     "builtIn:itemsadder",
     "builtIn:hdb",
+    "builtIn:minecraft",
     "commands",
 )
 pluginManagement {
