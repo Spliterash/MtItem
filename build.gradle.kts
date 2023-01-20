@@ -9,7 +9,6 @@ plugins {
     id("ru.spliterash.shadow-kotlin-relocate") version "1.0.0"
 }
 
-version = "1.0.0"
 
 bukkit {
     name = "MtItem"
@@ -23,6 +22,8 @@ bukkit {
 allprojects {
     apply(plugin = "java-library")
     apply(plugin = "kotlin")
+
+    version = "1.0.0"
 
     repositories {
         mavenCentral()

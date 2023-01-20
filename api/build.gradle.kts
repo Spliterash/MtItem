@@ -7,6 +7,7 @@ java {
 publishing {
     publications {
         create<MavenPublication>("maven") {
+            groupId = "ru.minetopia"
             artifactId = rootProject.name
             from(components["java"])
         }
