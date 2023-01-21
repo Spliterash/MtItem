@@ -29,7 +29,7 @@ class MtItemService(
 
     override fun findItem(id: String): ItemStack {
         val matcher = PATTERN.matcher(id)
-
+        if (!matcher.matches()) throw MtItemInvalidSyntaxException()
         val domain = matcher.group(1) ?: throw MtItemInvalidSyntaxException()
         val path = matcher.group(2) ?: throw MtItemInvalidSyntaxException()
 
