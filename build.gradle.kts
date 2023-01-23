@@ -16,7 +16,7 @@ bukkit {
     apiVersion = "1.13"
     authors = listOf("Spliterash")
     depend = listOf("SpringSpigot", "KotlinMc")
-    softDepend = listOf("ItemsAdder", "LuckyPerms")
+    softDepend = listOf("ItemsAdder", "HeadDatabase")
 }
 
 allprojects {
@@ -30,11 +30,7 @@ allprojects {
         maven("https://repo.papermc.io/repository/maven-public/") // PaperAPI
         maven("https://repo.aikar.co/content/groups/aikar/") // ACF
         maven {
-            url = uri("https://repo.spliterash.ru/all/")
-            credentials {
-                username = findProperty("SPLITERASH_NEXUS_USR")?.toString()
-                password = findProperty("SPLITERASH_NEXUS_PSW")?.toString()
-            }
+            url = uri("https://repo.spliterash.ru/group/")
         }
     }
 
