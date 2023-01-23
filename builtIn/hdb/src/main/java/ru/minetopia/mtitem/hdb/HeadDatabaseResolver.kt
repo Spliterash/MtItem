@@ -11,8 +11,7 @@ import ru.minetopia.mtitem.api.resolver.ItemResolver
 @ConditionalOnClass(HeadDatabaseAPI::class)
 class HeadDatabaseResolver : ItemResolver {
     private val api = HeadDatabaseAPI()
-    override val domain: String
-        get() = "hdb"
+    override val domain = "hdb"
 
     override fun resolve(text: String): ItemStack = api.getItemHead(text) ?: throw MtItemNotFoundException()
 }

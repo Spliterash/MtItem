@@ -10,8 +10,7 @@ import ru.minetopia.mtitem.api.resolver.ItemResolver
 @Component
 @ConditionalOnClass(CustomStack::class)
 class ItemsAdderItemResolver : ItemResolver {
-    override val domain: String
-        get() = "itemsadder"
+    override val domain = "itemsadder"
 
     override fun resolve(text: String): ItemStack {
         return CustomStack.getInstance(text)?.itemStack ?: throw MtItemNotFoundException()
