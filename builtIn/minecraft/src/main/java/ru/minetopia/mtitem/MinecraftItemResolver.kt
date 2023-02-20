@@ -4,6 +4,7 @@ import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.springframework.stereotype.Component
 import ru.minetopia.mtitem.api.exceptions.MtItemNotFoundException
+import ru.minetopia.mtitem.api.factory.MtItemFactory
 import ru.minetopia.mtitem.api.resolver.ItemResolver
 
 @Component
@@ -14,5 +15,11 @@ class MinecraftItemResolver : ItemResolver {
         val material = Material.matchMaterial(text) ?: throw MtItemNotFoundException()
 
         return ItemStack(material)
+    }
+
+    override fun resolveFactory(text: String): MtItemFactory {
+        val stack = resolve(text)
+
+        return MtItemFactory { stack.clone() }
     }
 }

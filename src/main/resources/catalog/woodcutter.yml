@@ -1,0 +1,7 @@
+woodcutter_axe_level_1:
+  id: material://stone
+# mtitem://woodcutter_reward
+woodcutter_reward:
+  id: material://acacia_wood
+  amount: 1
+  name: "Награда за хорошую работу"
