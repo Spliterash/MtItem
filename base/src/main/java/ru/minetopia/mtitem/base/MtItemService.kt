@@ -15,8 +15,7 @@ import java.util.regex.Pattern
 private val PATTERN = Pattern.compile("([a-z]+)://(.*)")
 
 @Component
-class MtItemService(
-) : MtItemApi {
+class MtItemService : MtItemApi {
     private val resolvers = hashMapOf<String, ItemResolver>()
 
     init {
@@ -36,6 +35,10 @@ class MtItemService(
 
     override fun registerResolver(resolver: ItemResolver) {
         resolvers[resolver.domain] = resolver
+    }
+
+    override fun resolvers(): List<ItemResolver> {
+        return resolvers.values.toList()
     }
 
     private inline fun <T> splitAndFind(id: String, block: ItemResolver.(String) -> T): T {

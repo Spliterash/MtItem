@@ -36,7 +36,7 @@ allprojects {
 
     dependencies {
         compileOnly("io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT")
-        compileOnly("ru.spliterash:spring-spigot:1.0.6")
+        compileOnly("ru.spliterash:spring-spigot:1.0.9")
         compileOnly("ru.spliterash:kotlin-mc:1.0.3")
     }
 
@@ -67,7 +67,6 @@ val startPath = "ru.minetopia.mtitem.shadow."
 tasks.shadowJar {
     archiveVersion.set("")
     archiveClassifier.set("")
-//    minimize()
 
     kotlinRelocate("co.aikar.commands", startPath + "acf")
     kotlinRelocate("co.aikar.locales", startPath + "locales")

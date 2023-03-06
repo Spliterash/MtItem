@@ -15,4 +15,8 @@ class ItemsAdderItemResolver : ItemResolver {
     override fun resolve(text: String): ItemStack {
         return CustomStack.getInstance(text)?.itemStack ?: throw MtItemNotFoundException()
     }
+
+    override fun items(): Collection<String> {
+        return CustomStack.getNamespacedIdsInRegistry()
+    }
 }

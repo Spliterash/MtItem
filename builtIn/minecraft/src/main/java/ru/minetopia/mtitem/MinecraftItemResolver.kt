@@ -22,4 +22,8 @@ class MinecraftItemResolver : ItemResolver {
 
         return MtItemFactory { stack.clone() }
     }
+
+    override fun items(): List<String> {
+        return Material.values().map { it.name.lowercase() }
+    }
 }

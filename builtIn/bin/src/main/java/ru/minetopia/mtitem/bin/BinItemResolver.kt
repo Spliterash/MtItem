@@ -23,6 +23,10 @@ class BinItemResolver : ItemResolver {
         return MtItemFactory { stack.clone() }
     }
 
+    override fun items(): List<String> {
+        return listOf()
+    }
+
     private fun deserialize(text: String): ItemStack {
         val byteItemStack = Base64.getDecoder().decode(text)
 

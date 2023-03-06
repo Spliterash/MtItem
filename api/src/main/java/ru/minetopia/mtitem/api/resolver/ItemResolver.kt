@@ -14,4 +14,6 @@ interface ItemResolver {
     fun resolveFactory(text: String): MtItemFactory {
         return MtItemFactory { resolve(text).clone() }
     }
+
+    fun items(): Collection<String>
 }

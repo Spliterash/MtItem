@@ -28,4 +28,6 @@ interface MtItemApi {
     fun findItemFactory(id: String): MtItemFactory
 
     fun registerResolver(resolver: ItemResolver)
+
+    fun resolvers(): List<ItemResolver>
 }
