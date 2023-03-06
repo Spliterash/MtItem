@@ -7,6 +7,8 @@ import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import org.springframework.stereotype.Component
 import ru.minetopia.mtitem.api.MtItemApi
+import ru.minetopia.mtitem.api.exceptions.MtItemInvalidSyntaxException
+import ru.minetopia.mtitem.api.exceptions.MtItemNotFoundException
 import ru.spliterash.springspigot.reload.ReloadService
 
 @Component
@@ -20,11 +22,18 @@ class MtItemCommand(
     @CommandPermission("mtitem.give")
     @CommandCompletion("@item @players")
     fun give(sender: CommandSender, item: String, @Optional @Flags("other,defaultself") player: Player) {
-        val stack = mtItemApi.findItem(item)
+        try {
+            val stack = mtItemApi.findItem(item)
+            player.inventory.addItem(stack)
 
-        player.inventory.addItem(stack)
-
-        sender.sendMessage("Done.")
+            sender.sendMessage("Done.")
+        } catch (notFound: MtItemNotFoundException) {
+            sender.sendMessage("Not found")
+        } catch (parseFail: MtItemInvalidSyntaxException) {
+            sender.sendMessage("Invalid syntax")
+        } catch (ex: Exception) {
+            sender.sendMessage("Unknown exp(${ex.javaClass.simpleName}): " + ex.message)
+        }
     }
 
     @Subcommand("reload")
