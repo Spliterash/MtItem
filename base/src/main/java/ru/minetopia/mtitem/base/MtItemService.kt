@@ -43,9 +43,9 @@ class MtItemService : MtItemApi {
 
     private inline fun <T> splitAndFind(id: String, block: ItemResolver.(String) -> T): T {
         val matcher = PATTERN.matcher(id)
-        if (!matcher.matches()) throw MtItemInvalidSyntaxException()
-        val domain = matcher.group(1) ?: throw MtItemInvalidSyntaxException()
-        val path = matcher.group(2) ?: throw MtItemInvalidSyntaxException()
+        if (!matcher.matches()) throw MtItemInvalidSyntaxException(id)
+        val domain = matcher.group(1) ?: throw MtItemInvalidSyntaxException(id)
+        val path = matcher.group(2) ?: throw MtItemInvalidSyntaxException(id)
         val resolver = findResolver(domain)
 
         return block(resolver, path)
