@@ -12,7 +12,7 @@ class MinecraftItemResolver : ItemResolver {
     override val domain = "minecraft"
 
     override fun resolve(text: String): ItemStack {
-        val material = Material.matchMaterial(text) ?: throw MtItemNotFoundException()
+        val material = Material.matchMaterial(text) ?: throw MtItemNotFoundException(text, this)
 
         return ItemStack(material)
     }

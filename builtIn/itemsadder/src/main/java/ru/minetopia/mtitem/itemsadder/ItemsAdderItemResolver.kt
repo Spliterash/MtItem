@@ -13,7 +13,7 @@ class ItemsAdderItemResolver : ItemResolver {
     override val domain = "itemsadder"
 
     override fun resolve(text: String): ItemStack {
-        return CustomStack.getInstance(text)?.itemStack ?: throw MtItemNotFoundException()
+        return CustomStack.getInstance(text)?.itemStack ?: throw MtItemNotFoundException(text, this)
     }
 
     override fun items(): Collection<String> {

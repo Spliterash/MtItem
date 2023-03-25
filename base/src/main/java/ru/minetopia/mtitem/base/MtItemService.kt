@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 import ru.minetopia.mtitem.api.MtItemApi
 import ru.minetopia.mtitem.api.MtItemApiHolder
 import ru.minetopia.mtitem.api.exceptions.MtItemInvalidSyntaxException
-import ru.minetopia.mtitem.api.exceptions.MtItemNotFoundException
+import ru.minetopia.mtitem.api.exceptions.MtItemResolverNotFoundException
 import ru.minetopia.mtitem.api.factory.MtItemFactory
 import ru.minetopia.mtitem.api.resolver.ItemResolver
 import java.util.regex.Pattern
@@ -22,7 +22,8 @@ class MtItemService : MtItemApi {
         MtItemApiHolder.set(this)
     }
 
-    override fun findResolver(domain: String): ItemResolver = resolvers[domain] ?: throw MtItemNotFoundException()
+    override fun findResolver(domain: String): ItemResolver = resolvers[domain]
+        ?: throw MtItemResolverNotFoundException(domain)
 
 
     override fun findItem(id: String): ItemStack {

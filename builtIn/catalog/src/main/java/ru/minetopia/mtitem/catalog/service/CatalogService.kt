@@ -1,10 +1,11 @@
 package ru.minetopia.mtitem.catalog.service
 
+import org.bukkit.NamespacedKey
 import org.bukkit.inventory.ItemStack
+import org.bukkit.persistence.PersistentDataType
 import org.bukkit.plugin.java.JavaPlugin
 import org.springframework.stereotype.Component
 import ru.minetopia.mtitem.api.MtItemApi
-import ru.minetopia.mtitem.api.exceptions.MtItemNotFoundException
 import ru.minetopia.mtitem.base.common.mm
 import ru.minetopia.mtitem.base.common.resetStartFormatting
 import ru.minetopia.mtitem.catalog.configuration.CatalogItem
@@ -15,6 +16,7 @@ import java.util.*
 import java.util.concurrent.CompletableFuture
 import javax.annotation.PostConstruct
 
+const val NBT_ID = "catalog_id"
 @Component
 class CatalogService(
     private val plugin: JavaPlugin,
@@ -45,8 +47,8 @@ class CatalogService(
         null
     }
 
-    fun find(id: String): ItemStack {
-        val configuration = items[id] ?: throw MtItemNotFoundException()
+    fun find(id: String): ItemStack? {
+        val configuration = items[id] ?: return null
 
         var factory = configuration.itemFactory
         if (factory == null) {
@@ -60,6 +62,7 @@ class CatalogService(
             stack.editMeta { meta ->
                 configuration.name?.let { name -> meta.displayName(name) }
                 configuration.description?.let { description -> meta.lore(description) }
+                meta.persistentDataContainer.set(NamespacedKey(plugin, NBT_ID), PersistentDataType.STRING, id)
             }
         }
 
