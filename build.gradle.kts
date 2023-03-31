@@ -3,7 +3,6 @@ import ru.spliterash.shadowkotlinrelocate.shadowjar.kotlinRelocate
 plugins {
     id("java-library")
     kotlin("jvm") version "1.7.21"
-    id("io.freefair.lombok") version "6.6"
     id("net.minecrell.plugin-yml.bukkit") version "0.5.2"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("ru.spliterash.shadow-kotlin-relocate") version "1.0.0"

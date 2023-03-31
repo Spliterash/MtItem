@@ -1,6 +1,8 @@
 package ru.minetopia.mtitem.catalog.service
 
+import com.destroystokyo.paper.Namespaced
 import org.bukkit.NamespacedKey
+import org.bukkit.attribute.Attribute
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
 import org.bukkit.plugin.java.JavaPlugin
@@ -17,6 +19,7 @@ import java.util.concurrent.CompletableFuture
 import javax.annotation.PostConstruct
 
 const val NBT_ID = "catalog_id"
+
 @Component
 class CatalogService(
     private val plugin: JavaPlugin,
@@ -58,12 +61,10 @@ class CatalogService(
 
         val stack = factory.item()
 
-        if (configuration.name != null || configuration.description != null) {
-            stack.editMeta { meta ->
-                configuration.name?.let { name -> meta.displayName(name) }
-                configuration.description?.let { description -> meta.lore(description) }
-                meta.persistentDataContainer.set(NamespacedKey(plugin, NBT_ID), PersistentDataType.STRING, id)
-            }
+        stack.editMeta { meta ->
+            configuration.name?.let { name -> meta.displayName(name) }
+            configuration.description?.let { description -> meta.lore(description) }
+            meta.persistentDataContainer.set(NamespacedKey(plugin, NBT_ID), PersistentDataType.STRING, id)
         }
 
         return stack
