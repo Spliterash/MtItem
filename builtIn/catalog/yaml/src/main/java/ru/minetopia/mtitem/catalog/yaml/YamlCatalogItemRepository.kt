@@ -10,7 +10,6 @@ import ru.minetopia.mtitem.catalog.conf.CatalogItemConf
 import ru.minetopia.mtitem.catalog.port.CatalogItemRepository
 import ru.spliterash.springspigot.json.services.YamlService
 import java.io.File
-import javax.annotation.PostConstruct
 
 @Component
 class YamlCatalogItemRepository(
@@ -19,12 +18,28 @@ class YamlCatalogItemRepository(
 ) : CatalogItemRepository {
     private val folder = File(plugin.dataFolder, "catalog")
 
-    @PostConstruct
-    fun init() {
-        folder.mkdirs()
-    }
-
     override suspend fun load(): CatalogConf = withContext(Dispatchers.IO) {
+        if (!folder.isDirectory) {
+            folder.mkdirs()
+
+            val exampleItem = CatalogItemConf(
+                "minecraft://stone",
+                "<gray>Обычный <white>камень",
+                listOf("<gray>Самый обычный <white>камень")
+            )
+            val map = mapOf(
+                "example_catalog_item" to exampleItem
+            )
+
+
+            val exampleFile = File(folder, "example.yml")
+
+            yamlService.save(exampleFile, map)
+
+            return@withContext CatalogConf(map)
+        }
+
+
         val map = hashMapOf<String, CatalogItemConf>()
         for (file in folder.listFiles()) {
             val loaded = yamlService.load(file, object : TypeReference<Map<String, CatalogItemConf>>() {})
