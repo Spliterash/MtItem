@@ -15,7 +15,7 @@ bukkit {
     apiVersion = "1.13"
     authors = listOf("Spliterash")
     depend = listOf("SpringSpigot", "KotlinMc")
-    softDepend = listOf("ItemsAdder", "HeadDatabase")
+    softDepend = listOf("ItemsAdder", "HeadDatabase", "Nova")
 }
 
 allprojects {

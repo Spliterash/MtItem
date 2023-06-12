@@ -15,5 +15,7 @@ interface ItemResolver {
         return MtItemFactory { resolve(text).clone() }
     }
 
+    fun isResolverItem(itemStack: ItemStack): Boolean
+
     fun items(): Collection<String>
 }

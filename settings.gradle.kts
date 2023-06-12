@@ -7,6 +7,7 @@ include(
     "builtIn:catalog:yaml",
     "builtIn:bin",
     "builtIn:itemsadder",
+    "builtIn:nova",
     "builtIn:hdb",
     "builtIn:minecraft",
     "commands",

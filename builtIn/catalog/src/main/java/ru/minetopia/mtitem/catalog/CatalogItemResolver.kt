@@ -16,6 +16,10 @@ class CatalogItemResolver(
         return catalogService.find(text) ?: throw MtItemNotFoundException(text, this)
     }
 
+    override fun isResolverItem(itemStack: ItemStack): Boolean {
+        return false
+    }
+
     override fun items(): Collection<String> {
         return catalogService.ids
     }
