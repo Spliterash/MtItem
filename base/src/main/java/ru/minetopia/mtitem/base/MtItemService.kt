@@ -25,6 +25,9 @@ class MtItemService : MtItemApi {
     override fun findResolver(domain: String): ItemResolver = resolvers[domain]
         ?: throw MtItemResolverNotFoundException(domain)
 
+    override fun findResolver(itemStack: ItemStack): ItemResolver? {
+        return resolvers.values.firstOrNull { it.isResolverItem(itemStack) }
+    }
 
     override fun findItem(id: String): ItemStack {
         return splitAndFind(id) { path -> resolve(path) }

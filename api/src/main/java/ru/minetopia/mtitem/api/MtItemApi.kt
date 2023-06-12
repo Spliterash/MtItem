@@ -30,4 +30,5 @@ interface MtItemApi {
     fun registerResolver(resolver: ItemResolver)
 
     fun resolvers(): List<ItemResolver>
+    fun findResolver(itemStack: ItemStack): ItemResolver?
 }

@@ -16,6 +16,10 @@ class ItemsAdderItemResolver : ItemResolver {
         return CustomStack.getInstance(text)?.itemStack ?: throw MtItemNotFoundException(text, this)
     }
 
+    override fun isResolverItem(itemStack: ItemStack): Boolean {
+        return CustomStack.byItemStack(itemStack) != null
+    }
+
     override fun items(): Collection<String> {
         return CustomStack.getNamespacedIdsInRegistry()
     }

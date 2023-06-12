@@ -23,6 +23,10 @@ class BinItemResolver : ItemResolver {
         return MtItemFactory { stack.clone() }
     }
 
+    override fun isResolverItem(itemStack: ItemStack): Boolean {
+        return false
+    }
+
     override fun items(): List<String> {
         return listOf()
     }

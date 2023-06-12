@@ -17,5 +17,11 @@ class NovaItemResolver : ItemResolver {
             ?: throw MtItemNotFoundException(text, this)
     }
 
+
+    @Suppress("DEPRECATION")
+    override fun isResolverItem(itemStack: ItemStack): Boolean {
+        return Nova.getNova().materialRegistry.getOrNull(itemStack) != null
+    }
+
     override fun items(): Collection<String> = listOf()
 }

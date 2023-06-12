@@ -14,6 +14,10 @@ class HeadDatabaseResolver : ItemResolver {
     override val domain = "hdb"
 
     override fun resolve(text: String): ItemStack = api.getItemHead(text) ?: throw MtItemNotFoundException(text, this)
+    override fun isResolverItem(itemStack: ItemStack): Boolean {
+        return api.isDecorativeHead(itemStack)
+    }
+
     override fun items(): List<String> {
         return listOf()
     }
