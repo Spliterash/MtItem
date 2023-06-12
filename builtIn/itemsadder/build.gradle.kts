@@ -1,10 +1,7 @@
 repositories {
-    maven("https://maven.pkg.github.com/LoneDev6/API-ItemsAdder") {
-        name = "githubPackages"
-        credentials(PasswordCredentials::class)
-    }
+    maven("https://jitpack.io/")
 }
 
 dependencies {
-    compileOnly("dev.lone:api-itemsadder:3.2.5")
+    compileOnly("com.github.LoneDev6:api-itemsadder:3.4.1e")
 }
